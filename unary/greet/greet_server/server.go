@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/saskaradit/grpc-go-sandbox/greet/greetpb"
+	"github.com/saskaradit/grpc-go-sandbox/unary/greet/greetpb"
 	grpc "google.golang.org/grpc"
 )
 
