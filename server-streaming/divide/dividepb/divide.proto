@@ -1,0 +1,22 @@
+syntax="proto3";
+
+package divide;
+option go_package="./divide/dividepb";
+
+
+message Divide {
+  int32 number =1;
+}
+
+message DivideManyTimesRequest {
+  Divide divide = 1;
+}
+
+message DivideManyTimesResponse {
+  int32 result =1;
+}
+
+service DivideService {
+  // Server Streaming
+  rpc DivideManyTimes(DivideManyTimesRequest) returns (stream DivideManyTimesResponse) {};
+}
