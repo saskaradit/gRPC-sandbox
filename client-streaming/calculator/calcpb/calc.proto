@@ -1,0 +1,20 @@
+syntax="proto3";
+
+package calc;
+option go_package="./calculator/calcpb";
+
+message Calculate {
+  int32 number = 1;
+}
+
+message CalculateLongRequest{
+  Calculate calculate = 1;
+}
+
+message CalculateLongResponse{
+  int32 result =1;
+}
+
+service CalculateService {
+  rpc LongCalculate(stream CalculateLongRequest) returns (CalculateLongResponse){};
+}
