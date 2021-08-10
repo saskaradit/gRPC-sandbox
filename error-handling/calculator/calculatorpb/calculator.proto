@@ -1,0 +1,20 @@
+syntax="proto3";
+
+package calculator;
+option go_package="./calculator/calculatorpb";
+
+message SquareRootRequest{
+  int32 number =1;
+}
+
+message SquareRootResponse{
+  double number_root = 1;
+}
+
+service CalculatorService {
+
+  // Unary streaming
+  // error handling -> this rpc will throw an exception if the sent number is negative
+  // The error will be type of INVALID_ARGUMENT
+  rpc SquareRoot(SquareRootRequest) returns (SquareRootResponse){}
+}

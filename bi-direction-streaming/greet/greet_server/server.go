@@ -13,7 +13,7 @@ import (
 type server struct{}
 
 func (*server) GreetEveryone(stream greetpb.GreetService_GreetEveryoneServer) error {
-	fmt.Println("GreetEveryone function was invoked with a streamintg request")
+	fmt.Println("GreetEveryone function was invoked with a streaming request")
 
 	for {
 		req, err := stream.Recv()
