@@ -9,6 +9,7 @@ import (
 	"github.com/saskaradit/grpc-go-sandbox/unary/greet/greetpb"
 	grpc "google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/reflection"
 )
 
 type server struct{}
@@ -46,8 +47,13 @@ func main() {
 		}
 		opts = append(opts, grpc.Creds(creds))
 	}
+
 	s := grpc.NewServer(opts...)
 	greetpb.RegisterGreetServiceServer(s, &server{})
+
+	// USING EVANS REFLECTION
+	// evans --tls --cacert ssl/ca.crt --servername localhost -r -p 50051
+	reflection.Register(s)
 
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
